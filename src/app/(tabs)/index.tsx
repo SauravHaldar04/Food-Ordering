@@ -1,20 +1,24 @@
-import { StyleSheet,Text,View,Image } from 'react-native';
+import { View ,FlatList} from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
+import EditScreenInfo from '../../../components/EditScreenInfo';
 
 import Colors from '@/constants/Colors';
-import products from '@/assets/data/products';
-import ProductListItem from '@/components/ProductListItem';
+import products from '@assets/data/products';
+import ProductListItem from '@components/ProductListItem';
 const product = products[1];
 
 
 
-export default function TabOneScreen() {
+export default function MenuScreen() {
   return (
     <View>
-      <ProductListItem product = {products[0]}/>
-      <ProductListItem product = {products[1]}/>
-      <ProductListItem product = {products[5]}/>
+      <FlatList data={products} renderItem={({item})=>{
+        return ProductListItem({product:item});
+      }} 
+      numColumns={2}
+      contentContainerStyle={{gap:10,padding:10}}
+      columnWrapperStyle={{gap:10}}
+      />
     </View>
   );
 }
